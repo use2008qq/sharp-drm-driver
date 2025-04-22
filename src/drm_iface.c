@@ -616,7 +616,7 @@ int drm_probe(struct spi_device *spi)
 	spi_set_drvdata(spi, drm);
 
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 11, 0)
-	drm_ttm_setup(drm, 0);
+	drm_fbdev_ttm_setup(drm, 0);
 #else
 	drm_fbdev_generic_setup(drm, 0);
 #endif
