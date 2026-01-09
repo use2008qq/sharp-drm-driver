@@ -15,7 +15,7 @@ KERNELRELEASE := $(shell uname -r)
 endif
 # LINUX_DIR is set by Buildroot
 ifeq ($(LINUX_DIR),)
-LINUX_DIR := /lib/modules/$(KERNELRELEASE)/build
+LINUX_DIR := /root/CheckPoint/RKSOC/rk3288/workspace/6.12__rockchip__armhf
 endif
 
 # BUILD_DIR is set by DKMS, but not if running manually
