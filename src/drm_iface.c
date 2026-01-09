@@ -32,12 +32,9 @@
 #include <drm/drm_probe_helper.h>
 #include <drm/drm_simple_kms_helper.h>
 
-// https://github.com/torvalds/linux/commit/aae4682e5d66c1e1dc181fa341652e037237f144 
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 11, 0)
-#include <drm/drm_fbdev_ttm.h>
-#elif LINUX_VERSION_CODE >= KERNEL_VERSION(6, 6, 0)
-#include <drm/drm_fbdev_generic.h>
-#endif
+// https://github.com/torvalds/linux/commit/aae4682e5d66c1e1dc181fa341652e037237f144
+// Use drm_fbdev_dma since this driver uses DMA helpers
+#include <drm/drm_fbdev_dma.h>
 
 #include "params_iface.h"
 #include "ioctl_iface.h"
@@ -615,11 +612,7 @@ int drm_probe(struct spi_device *spi)
 	// fbdev setup
 	spi_set_drvdata(spi, drm);
 
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 11, 0)
-	drm_fbdev_ttm_setup(drm, 0);
-#else
-	drm_fbdev_generic_setup(drm, 0);
-#endif
+	drm_fbdev_dma_setup(drm, 0);
 
 	printk(KERN_INFO "sharp_memory: successful probe\n");
 
