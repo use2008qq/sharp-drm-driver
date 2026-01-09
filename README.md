@@ -1,3 +1,5 @@
+此版本已经适配好，并支持主线内核6.12版本
+
 ---
 title: Sharp DRM Driver
 layout: default
